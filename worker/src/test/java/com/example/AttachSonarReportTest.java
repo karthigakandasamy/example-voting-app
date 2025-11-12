@@ -37,7 +37,7 @@ class SonarQubeReportTest {
 
         int responseCode = connection.getResponseCode();
         Allure.step("Response code: " + responseCode);
-        assertTrue(responseCode == 200, "SonarQube API did not return 200 OK");
+        assertEquals(responseCode == 200, "SonarQube API did not return 200 OK");
 
         try (InputStream responseStream = connection.getInputStream()) {
             String response = new String(responseStream.readAllBytes(), StandardCharsets.UTF_8);
