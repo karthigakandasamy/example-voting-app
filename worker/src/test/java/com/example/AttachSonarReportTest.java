@@ -7,10 +7,10 @@ import java.io.FileInputStream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AttachSonarReportTest {
+class AttachSonarReportTest {
 
     @Test
-    public void attachSonarSummaryIfExists() throws Exception {
+    void attachSonarSummaryIfExists() throws Exception {
         File file = new File("target/allure-results/sonarqube-summary.json");
 
         assertTrue(file.exists(), 
