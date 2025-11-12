@@ -14,7 +14,7 @@ class AttachSonarReportTest {
 
     @Test
     void attachSonarSummaryWithDetails() throws Exception {
-        File file = new File("target/allure-results/sonarqube-summary.json");
+        File file = new File("allure-results/sonarqube-summary.json");
 
         if (!file.exists()) {
             System.out.println("SonarQube summary file not found — skipping attachment.");
