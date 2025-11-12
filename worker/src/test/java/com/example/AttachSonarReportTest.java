@@ -2,41 +2,56 @@ package com.example;
 
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
-import java.io.File;
-import java.io.FileInputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class AttachSonarReportTest {
+class SonarQubeReportTest {
+
+    private static final String SONAR_URL = "http://172.30.117.227:9000"; // your SonarQube base URL
+    private static final String PROJECT_KEY = "voting-app";              // your SonarQube project key
+    private static final String SONAR_TOKEN = System.getenv("SONAR_TOKEN"); // Jenkins will inject this token
 
     @Test
-    void attachSonarSummaryWithDetails() throws Exception {
-        File file = new File("allure-results/sonarqube-summary.json");
-
-        if (!file.exists()) {
-            System.out.println("SonarQube summary file not found — skipping attachment.");
-            assertTrue(true, "SonarQube summary not found — skipping attachment.");
+    void fetchAndAttachSonarQubeReport() throws Exception {
+        if (SONAR_TOKEN == null || SONAR_TOKEN.isEmpty()) {
+            Allure.step("SONAR_TOKEN not set. Skipping SonarQube check.");
+            assertTrue(true);
             return;
         }
 
-        // Attach JSON file
-        Allure.addAttachment("SonarQube Quality Gate Summary", new FileInputStream(file));
+        String apiUrl = SONAR_URL + "/api/qualitygates/project_status?projectKey=" + PROJECT_KEY;
 
-        // Parse JSON content to show readable info in the report
-        String content = new String(Files.readAllBytes(Paths.get(file.getPath())));
-        JSONObject json = new JSONObject(content);
+        Allure.step("Fetching SonarQube Quality Gate status from: " + apiUrl);
 
-        String projectKey = json.optString("projectKey", "unknown");
-        String qualityGateStatus = json.optString("qualityGateStatus", "unknown");
+        HttpURLConnection connection = (HttpURLConnection) new URL(apiUrl).openConnection();
+        String basicAuth = "Basic " + java.util.Base64.getEncoder()
+                .encodeToString((SONAR_TOKEN + ":").getBytes(StandardCharsets.UTF_8));
+        connection.setRequestProperty("Authorization", basicAuth);
+        connection.setRequestMethod("GET");
 
-        Allure.step("Project Key: " + projectKey);
-        Allure.step("Quality Gate Status: " + qualityGateStatus);
+        int responseCode = connection.getResponseCode();
+        Allure.step("Response code: " + responseCode);
+        assertTrue(responseCode == 200, "SonarQube API did not return 200 OK");
 
-        // Add assertion if quality gate failed
-        assertTrue(!"ERROR".equalsIgnoreCase(qualityGateStatus),
-            "SonarQube Quality Gate failed!");
+        try (InputStream responseStream = connection.getInputStream()) {
+            String response = new String(responseStream.readAllBytes(), StandardCharsets.UTF_8);
+            Allure.addAttachment("SonarQube API Response", "application/json", response);
+
+            JSONObject json = new JSONObject(response);
+            JSONObject projectStatus = json.getJSONObject("projectStatus");
+            String status = projectStatus.getString("status");
+
+            Allure.step("Quality Gate Status: " + status);
+            Allure.step("Details: " + projectStatus.toString(2));
+
+            assertTrue(!"ERROR".equalsIgnoreCase(status),
+                    "SonarQube Quality Gate failed with status: " + status);
+        }
     }
 }
