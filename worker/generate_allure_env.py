@@ -7,7 +7,7 @@ with open('/var/lib/jenkins/workspace/Allure_TestReport/worker/allure-results/so
 measures = data['component']['measures']
 
 sonar_host_url = os.getenv("SONAR_HOST_URL", "").rstrip("/")
-project_key = os.getenv("projectKey", "unknown_project")
+project_key = "voting-app"
 sonar_env = os.getenv("SONARQUBE_ENV", "SonarQube")
 
 if sonar_host_url:
