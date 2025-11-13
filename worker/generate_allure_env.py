@@ -1,4 +1,5 @@
 import json
+import os  
 
 with open('/var/lib/jenkins/workspace/Allure_TestReport/worker/allure-results/sonarqube-metrics.json', 'r') as f:
     data = json.load(f)
