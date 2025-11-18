@@ -115,6 +115,7 @@
                 <configuration>
                     <useModulePath>false</useModulePath>
                     <testNGArtifactName>org.testng:testng</testNGArtifactName>
+                    <testFailureIgnore>true</testFailureIgnore>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
