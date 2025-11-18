@@ -2,8 +2,7 @@ package testcase;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
- // import io.restassured.response.Response;
-// import org.testng.Assert;
+ 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
