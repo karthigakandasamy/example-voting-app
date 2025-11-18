@@ -157,7 +157,7 @@
                         <include>**/*TestCase.java</include>
                     </includes>
 	           <suiteXmlFiles>
-                   <suiteXmlFile>testng.xml</suiteXmlFile> 
+                   <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile> 
                </suiteXmlFiles>
 			   <testNGArtifactName>org.testng:testng</testNGArtifactName>
             </configuration>
