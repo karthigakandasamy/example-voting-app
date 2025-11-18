@@ -1,4 +1,4 @@
-package com.example;
+package unit;
 
 import io.qameta.allure.Allure;
 import org.testng.annotations.Test;
