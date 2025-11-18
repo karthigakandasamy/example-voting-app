@@ -1,12 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="AllTests">
+    <listeners>
+      <listener class-name="utils.ExtentReporterNG"/>
+    </listeners>
     <test name="All Test Cases">
         <classes>
             <class name="com.example.SampleTest"/>
             <class name="com.example.AttachSonarReportTest"/>
             <class name="testcase.AutomationTests"/>
             <class name="testcase.HondaApiTests"/>
-            <class name="worker.UnitWorker"/>
         </classes>
     </test>
 </suite>
