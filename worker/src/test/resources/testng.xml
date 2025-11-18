@@ -17,7 +17,7 @@
     <!-- ==========================
          TEST GROUP 2 — UI Tests
          ========================== -->
-    <test name="All UI Automation Tests">
+    <test name="UI Automation Tests">
         <classes>
             <class name="testcase.AutomationTests"/>
         </classes>
@@ -26,7 +26,7 @@
     <!-- ==========================
          TEST GROUP 3 — API Tests
          ========================== -->
-    <test name="All API Tests">
+    <test name="UI API Tests">
         <classes>
             <class name="testcase.HondaApiTests"/>
         </classes>
