@@ -6,7 +6,10 @@
      <test name="Unit Tests">
         <classes>
             <class name="com.example.SampleTest"/>
-            <class name="com.example.AttachSonarReportTest"/>
+            <class name="unit.CalculatorTest"/>
+            <class name="unit.StringUtilsTest"/>
+            <class name="unit.ApiHealthCheckTest"/>
+            <class name="unit.DatabaseConnectionTest"/>
         </classes>
     </test>
 
