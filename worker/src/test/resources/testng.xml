@@ -5,7 +5,7 @@
     </listeners>
      <test name="Unit Tests">
         <classes>
-            <class name="com.example.SampleTest"/>
+            <class name="unit.SampleTest"/>
             <class name="unit.CalculatorTest"/>
             <class name="unit.StringUtilsTest"/>
             <class name="unit.ApiHealthCheckTest"/>
