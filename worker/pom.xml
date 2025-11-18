@@ -159,8 +159,7 @@
 	           <suiteXmlFiles>
                    <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile> 
                </suiteXmlFiles>
-			   <testNGArtifactName>org.testng:testng</testNGArtifactName>
-            </configuration>
+			</configuration>
       </plugin>
        <plugin>
     <groupId>io.qameta.allure</groupId>
