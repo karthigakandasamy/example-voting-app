@@ -3,7 +3,7 @@
     <listeners>
       <listener class-name="utils.ExtentReporterNG"/>
     </listeners>
-     <test name="Unit Tests">
+     <test name="All Unit Tests">
         <classes>
             <class name="unit.SampleTest"/>
             <class name="unit.CalculatorTest"/>
@@ -16,7 +16,7 @@
     <!-- ==========================
          TEST GROUP 2 — UI Tests
          ========================== -->
-    <test name="UI Automation Tests">
+    <test name="All UI Automation Tests">
         <classes>
             <class name="testcase.AutomationTests"/>
         </classes>
@@ -25,7 +25,7 @@
     <!-- ==========================
          TEST GROUP 3 — API Tests
          ========================== -->
-    <test name="API Tests">
+    <test name="All API Tests">
         <classes>
             <class name="testcase.HondaApiTests"/>
         </classes>
