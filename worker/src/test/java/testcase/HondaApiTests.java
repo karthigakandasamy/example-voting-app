@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.*;
 public class HondaApiTests {
 
     // Base URL for the NHTSA vPIC API
-    private final String BASE_URL = "https://vpic.nhtsa.dot.gov/api";
+    public static final String BASE_URL = "https://vpic.nhtsa.dot.gov/api";
 
     @BeforeClass
     public void setup() {
