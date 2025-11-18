@@ -149,17 +149,17 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>3.2.5</version>
-            <configuration>
-               <useModulePath>false</useModulePath>
-				<includes>
-                        <include>**/*Test.java</include>
-                        <include>**/*Tests.java</include>
-                        <include>**/*TestCase.java</include>
-                    </includes>
-	           <suiteXmlFiles>
-                   <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile> 
-               </suiteXmlFiles>
-			</configuration>
+		     <configuration>
+                <useModulePath>false</useModulePath>
+
+                <!-- Enable TestNG explicitly -->
+                 <testNGArtifactName>org.testng:testng</testNGArtifactName>
+
+        <!-- Force surefire to use this suite -->
+        <suiteXmlFiles>
+            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+        </suiteXmlFiles>
+    </configuration>            
       </plugin>
        <plugin>
     <groupId>io.qameta.allure</groupId>
